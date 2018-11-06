@@ -170,7 +170,7 @@ def model_fn_builder(bert_config, init_checkpoint, layer_indexes, use_tpu,
 
     tvars = tf.trainable_variables()
     scaffold_fn = None
-    (assignment_map, _) = modeling.get_assigment_map_from_checkpoint(
+    (assignment_map, _) = modeling.get_assignment_map_from_checkpoint(
         tvars, init_checkpoint)
     if use_tpu:
 
@@ -222,10 +222,10 @@ def convert_examples_to_features(examples, seq_length, tokenizer):
     # The convention in BERT is:
     # (a) For sequence pairs:
     #  tokens:   [CLS] is this jack ##son ##ville ? [SEP] no it is not . [SEP]
-    #  type_ids: 0   0  0    0    0     0       0 0    1  1  1  1   1 1
+    #  type_ids: 0     0  0    0    0     0       0 0     1  1  1  1   1 1
     # (b) For single sequences:
     #  tokens:   [CLS] the dog is hairy . [SEP]
-    #  type_ids: 0   0   0   0  0     0 0
+    #  type_ids: 0     0   0   0  0     0 0
     #
     # Where "type_ids" are used to indicate whether this is the first
     # sequence or the second sequence. The embedding vectors for `type=0` and
